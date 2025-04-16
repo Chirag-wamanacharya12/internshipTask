@@ -110,13 +110,19 @@ CORS_ALLOW_ALL_ORIGINS = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':'userManagement',
-        'USER':'root',
-        'PASSWORD':'Chirag@root#12',
-        'HOST':'localhost',
-        'PORT':'3306',
+        'NAME': 'dbpwf32489006',
+        'USER': 'dbpwf32489006',
+        'PASSWORD': 'bv1KLSoxYls4Jo?kuu7AmPld',
+        'HOST': 'serverless-eu-west-2.sysp0000.db1.skysql.com',
+        'PORT': '4046',
+        'OPTIONS': {
+            'ssl': {
+                'ssl-verify-server-cert': True
+            }
+        }
     }
 }
+
 
 # Authentication backends
 AUTHENTICATION_BACKENDS = [
