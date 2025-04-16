@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-o3=wpotfy+tf_-_%e#dow&p*6$ex9)j4@mtj9^545xtwx9-9hd
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [internshiptask-1-3a2q.onrender.com]
 
 GRAPHENE = {
     "SCHEMA": "user.schema.schema"  # path to schema
