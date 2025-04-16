@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block 'extra_head' %}
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+{% endblock 'extra_head' %}
+{% block 'main' %}
+<div class="flex h-screen">
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="bg-gray-800 text-white w-64 space-y-6 py-7 px-3 overflow-y-auto transition duration-300 transform -translate-x-64 md:translate-x-0 fixed md:sticky top-0 left-0 h-full z-40"> 
+
+        <!-- App Logo -->
+        <a href="#" class="flex items-center space-x-2 px-4">
+            <i class="fas fa-cube text-2xl"></i>
+            <span class="text-2xl font-extrabold">The App</span>
+        </a>
+
+        <!-- Navigation -->
+        <nav>
+            <ul class="space-y-2">
+                <li>
+                    <a href="#" class="flex items-center space-x-3 py-2 px-4 bg-gray-700 rounded transition duration-300">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center space-x-3 py-2 px-4 hover:bg-gray-700 rounded transition duration-300">
+                        <i class="fas fa-search"></i>
+                        <span>Search</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center space-x-3 py-2 px-4 hover:bg-gray-700 rounded transition duration-300">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Insights</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Account Section -->
+        <div class="p-4">
+            <a href="{% url 'logout' %}" class="flex items-center space-x-3 py-2 px-4 hover:bg-gray-700 rounded transition duration-300">
+                <i data-lucide="log-out"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-10">
+        <header class="flex items-center justify-between mb-6">
+            <button id="sidebar-toggle" class="text-white-600 focus:outline-none md:hidden outline">
+                <i class="align-justify"></i>
+            </button>
+            <h1 class="text-3xl font-semibold">Dashboard</h1>
+        </header>
+        <div class="p-6 bg-zinc-900 text-white rounded-md ">
+            <table class="table-auto w-full text-left font-medium">
+                <thead>
+                  <tr class="grid grid-cols-5">
+                    <th class="font-bold border-b border-white pb-2 px-3">ID</th>
+                    <th class="font-bold border-b border-white pb-2">Full Name</th>
+                    <th class="font-bold border-b border-white pb-2">Email</th>
+                    <th class="font-bold text-center border-b border-white pb-2">Modify</th>
+                    <th class="font-bold text-center border-b border-white pb-2">Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for user in users %}
+                    <tr class="grid grid-cols-5 odd:bg-white even:bg-gray-50 dark:odd:bg-gray-900/50 dark:even:bg-gray-950">
+                      <td class="px-3 py-2 border-b border-gray-700">{{ user.id }}</td>
+                      <td class="px-3 py-2 border-b border-gray-700">{{ user.full_name }}</td>
+                      <td class="px-3 py-2 border-b border-gray-700 truncate">{{ user.email }}</td>
+                      <td class="px-3 py-2 text-center border-b border-gray-700 text-blue-400 hover:underline cursor-pointer">Modify</td>
+                      <td  class="px-3 py-2 text-center border-b border-gray-700 text-red-400 hover:underline cursor-pointer"><a href="{% url 'delete_user' user.id %}">Delete</a></td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>              
+        </div>       
+    </main>
+</div>
+{% endblock 'main' %}
+{% block 'script' %}
+<script>
+    lucide.createIcons();
+
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+
+    sidebarToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('-translate-x-64');
+    });
+</script>
+{% endblock 'script' %}

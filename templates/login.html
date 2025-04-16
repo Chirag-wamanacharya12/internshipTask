@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block 'extra_head' %}
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+{% endblock 'extra_head' %}
+{% block 'main' %}
+<div class="flex items-center justify-center w-full min-h-screen">
+    <div class="bg-zinc-900 backdrop-blur-lg mx-auto rounded-2xl shadow-xl p-8 max-w-sm text-center">
+      <div class="flex justify-center mb-4">
+        <div class="bg-zinc-700 p-3 rounded-full shadow-md">
+            <i data-lucide="log-in"></i>
+        </div>
+      </div>
+      <h2 class="text-xl font-semibold text-zinc-300 mb-1">Sign in with email</h2>
+      <p class="text-sm text-gray-300 mb-6">Make a new doc to bring your words, data, and teams together. For free</p>
+      <form action="{% url 'loginuser' %}" class="space-y-4 text-left" method="post">
+        {% csrf_token %}
+        <input type="email" name="email" placeholder="Email"
+          class="peer ... w-full px-4 py-2 rounded-lg bg-zinc-950 placeholder-gray-500 text-sm invalid:border-pink-500 invalid:text-pink-600 focus:border-sky-500 focus:outline focus:outline-sky-500 focus:invalid:border-pink-500 focus:invalid:outline-pink-500 focus:invalid:outline-offset-2" />
+          <p class="hidden peer-invalid:block ...">Please provide a valid email address.</p>
+        <div class="relative">
+        <input type="password" id="passwordInput" name="password" placeholder="Password"
+            class="w-full px-4 py-2 rounded-lg bg-zinc-950 placeholder-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" />
+          <div id="togglePassword" class="absolute inset-y-0 right-3 flex items-center cursor-pointer text-gray-500">
+            <i id="icon" data-lucide="eye-off"></i>
+          </div>
+        </div>
+        <div class="text-right text-sm flex justify-between px-2">
+          <a href="{% url 'register' %}" class="text-blue-500 hover:underline">register</a>
+          <a href="{% url 'reset_password' %}" class="text-blue-500 hover:underline">Forgot password?</a>
+        </div>
+        <button type="submit" class="mt-6 w-full py-2 bg-black text-white rounded-lg font-semibold hover:bg-gray-800 transition">Get Started</button>
+      </form>
+      <div class="my-4 text-sm text-gray-500">Or sign in with</div>
+      <div class="flex justify-center space-x-4">
+        <a href="#" class="bg-white p-2 rounded-lg shadow hover:shadow-md">
+          <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-6 h-6" alt="Google" />
+        </a>
+        <a href="#" class="bg-white p-2 rounded-lg shadow hover:shadow-md">
+          <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" class="w-6 h-6" alt="Facebook" />
+        </a>
+      </div>
+      {% if messages %}
+      <div class="space-y-2 my-4">
+          {% for message in messages %}
+          <div class="px-4 py-3 rounded-lg text-sm font-medium
+                      {% if message.tags == 'error' %}
+                          bg-red-100 text-red-800
+                      {% elif message.tags == 'success' %}
+                          bg-green-100 text-green-800
+                      {% elif message.tags == 'warning' %}
+                          bg-yellow-100 text-yellow-800
+                      {% else %}
+                          bg-blue-100 text-blue-800
+                      {% endif %}">
+              {{ message }}
+          </div>
+          {% endfor %}
+      </div>
+  {% endif %}
+    </div>
+</div>
+{% endblock 'main' %}
+{% block 'script' %}
+<script>
+    lucide.createIcons();
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Render initial icon
+    lucide.createIcons();
+
+    const passwordInput = document.getElementById("passwordInput");
+    const toggleDiv = document.getElementById("togglePassword");
+    const icon = toggleDiv.querySelector("i");
+
+    toggleDiv.addEventListener("click", () => {
+      const isPassword = passwordInput.type === "password";
+      passwordInput.type = isPassword ? "text" : "password";
+
+      // Update icon
+      icon.setAttribute("data-lucide", isPassword ? "eye" : "eye-off");
+
+      // Re-render updated icon
+      lucide.createIcons();
+    });
+  });
+</script>
+
+{% endblock 'script' %}
