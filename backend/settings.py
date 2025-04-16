@@ -110,7 +110,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dbpwf32489006',
+        'NAME': 'postgres',
         'USER': 'dbpwf32489006',
         'PASSWORD': 'bv1KLSoxYls4Jo?kuu7AmPld',
         'HOST': 'serverless-eu-west-2.sysp0000.db1.skysql.com',
