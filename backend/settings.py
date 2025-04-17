@@ -110,16 +110,11 @@ CORS_ALLOW_ALL_ORIGINS = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'pertinax-studios-eke3',
-        'USER': 'dbpwf32489006',
-        'PASSWORD': 'bv1KLSoxYls4Jo?kuu7AmPld',
-        'HOST': 'serverless-eu-west-2.sysp0000.db1.skysql.com',
-        'PORT': '4046',
-        'OPTIONS': {
-            'ssl': {
-                'ssl-verify-server-cert': True
-            }
-        }
+        'NAME': 'pertinaxstudios1$usermanage',
+        'USER': 'pertinaxstudios1',
+        'PASSWORD': 'mzn9yWM3nDZZt0q',
+        'HOST': 'pertinaxstudios1.mysql.pythonanywhere-services.com',
+        'PORT': '3306',
     }
 }
 
