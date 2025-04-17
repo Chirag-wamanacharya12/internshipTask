@@ -110,10 +110,10 @@ CORS_ALLOW_ALL_ORIGINS = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'pertinaxstudios1$usermanage',
-        'USER': 'pertinaxstudios1',
+        'NAME': 'chirag18$usermanage',
+        'USER': 'chirag18',
         'PASSWORD': 'mzn9yWM3nDZZt0q',
-        'HOST': 'pertinaxstudios1.mysql.pythonanywhere-services.com',
+        'HOST': 'chirag18.mysql.pythonanywhere-services.com',
         'PORT': '3306',
     }
 }
